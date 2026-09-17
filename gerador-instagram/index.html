@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Legendas Instagram — Praia Digital</title>
+<meta name="description" content="Legendas com hashtags locais para posts imobiliários do litoral paulista.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:680px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .leg{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1rem;margin-top:.8rem;font-size:.92rem;line-height:1.6;white-space:pre-wrap;display:none}
+  .copy{margin-top:.5rem;padding:.5rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer;display:none}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/blog-litoral">← Blog do Litoral</a>
+</header>
+<main>
+  <div class="card">
+    <h1>📸 Legendas para Instagram</h1>
+    <p class="sub">Legenda + hashtags locais prontas para seu post imobiliário.</p>
+    <label>Tipo de post</label>
+    <select id="tipo">
+      <option value="imovel">Novo imóvel disponível</option>
+      <option value="dica">Dica de mercado</option>
+      <option value="lifestyle">Lifestyle do litoral</option>
+      <option value="depoimento">Depoimento de cliente</option>
+    </select>
+    <label>Cidade</label>
+    <select id="cidade"><option>Santos</option><option>Guarujá</option><option>Praia Grande</option><option>Bertioga</option><option>Mongaguá</option><option>Peruíbe</option></select>
+    <button onclick="gerar()">Gerar legenda</button>
+    <div class="leg" id="out"></div>
+    <button class="copy" id="cp" onclick="navigator.clipboard.writeText(document.getElementById('out').textContent);this.textContent='✅ Copiado!'">📋 Copiar legenda</button>
+    <div class="dica">✍️ Pautas no <a href="https://praia.digital/blog-litoral/gerador-pautas/" style="color:#0077B6;font-weight:700">Gerador de Pautas</a> · 🧲 <a href="https://praia.digital/blog-litoral/titulos-magneticos/" style="color:#0077B6;font-weight:700">Títulos Magnéticos</a></div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var t=document.getElementById('tipo').value, c=document.getElementById('cidade').value;
+  var tags='#'+c.replace(/\s/g,'').toLowerCase()+' #litoralpaulista #imoveisnapraia #praia #imoveis'+c.replace(/\s/g,'').toLowerCase()+' #temporada #investimentoimobiliario #praiadigital';
+  var corpo;
+  if(t==='imovel') corpo='🏠 NOVIDADE em '+c+'!\n\nEsse imóvel acabou de entrar e já está gerando fila de visitas. Localização privilegiada, perto da praia e com aquele potencial de valorização que a gente adora.\n\n👉 Comenta QUERO que eu te mando todos os detalhes no direct.\n\n';
+  else if(t==='dica') corpo='💡 VOCÊ SABIA?\n\nO metro quadrado em '+c+' ainda está abaixo da média do litoral — mas a valorização está acima. Quem entra agora, sai na frente.\n\nSalva esse post para não esquecer e me segue para mais dados do mercado!\n\n';
+  else if(t==='lifestyle') corpo='🌊 Imagina acordar com esse barulho de mar...\n\nEm '+c+' isso é rotina. Trabalhar de home office com vista para o mar não é mais sonho — é escolha.\n\nMarca alguém que precisa ler isso. 👇\n\n';
+  else corpo='⭐ "Melhor decisão que tomamos foi comprar em '+c+'!"\n\nDepoimentos assim enchem nosso coração. Ajudamos essa família a encontrar o imóvel perfeito — e o seu pode ser o próximo.\n\nChama no WhatsApp (link na bio)!\n\n';
+  document.getElementById('out').textContent=corpo+tags;
+  document.getElementById('out').style.display='block';
+  document.getElementById('cp').style.display='inline-block';
+}
+</script>
+</body>
+</html>
