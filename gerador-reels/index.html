@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteirizador de Reels Imobiliário — Praia Digital</title>
+<meta name="description" content="Roteiros de Reels de 30 segundos para corretores e imobiliárias do litoral: gancho, desenvolvimento e CTA.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:680px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .cena{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1rem;margin-top:.7rem;font-size:.92rem;line-height:1.6;display:none}
+  .cena b{color:#0077B6;display:block;margin-bottom:.3rem}
+  .copy{margin-top:.8rem;padding:.6rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer;display:none}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/blog-litoral">← Blog do Litoral</a>
+</header>
+<main>
+  <div class="card">
+    <h1>🎬 Roteirizador de Reels</h1>
+    <p class="sub">Reels de 30s com estrutura que prende: gancho (3s) → valor → CTA.</p>
+    <label>Tema do vídeo</label>
+    <select id="tema">
+      <option value="imovel">Tour de imóvel</option>
+      <option value="dica">Dica rápida de mercado</option>
+      <option value="erro">Erro comum do comprador</option>
+      <option value="lifestyle">Vida no litoral</option>
+    </select>
+    <label>Cidade/bairro</label><input id="local" value="Praia Grande">
+    <button onclick="gerar()">Gerar roteiro</button>
+    <div id="lista"></div>
+    <button class="copy" id="cp" onclick="copiar()">📋 Copiar roteiro completo</button>
+    <div class="dica">📸 Legenda no <a href="https://praia.digital/blog-litoral/gerador-instagram/" style="color:#0077B6;font-weight:700">Gerador de Legendas</a> · 🧲 <a href="https://praia.digital/blog-litoral/titulos-magneticos/" style="color:#0077B6;font-weight:700">Títulos Magnéticos</a></div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var t=document.getElementById('tema').value, l=document.getElementById('local').value;
+  var R;
+  if(t==='imovel') R=[['0–3s · GANCHO','"Esse apê em '+l+' custa menos que um carro popular..." (mostrar a fachada/vista de cara)'],['4–15s · TOUR','Cortes rápidos: sala → cozinha → quarto → vista. Texto na tela com metragem e diferenciais.'],['16–25s · PROVA','"A 5 min da praia, condomínio completo e valorização de 13% ao ano na região."'],['26–30s · CTA','"Comenta TEM INTERESSE que eu te mando o vídeo completo e o valor no direct."']];
+  else if(t==='dica') R=[['0–3s · GANCHO','"Você está perdendo dinheiro se não souber disso sobre '+l+'..."'],['4–20s · VALOR','1 dado concreto: preço por m², valorização ou ocupação. Direto ao ponto, olhando para a câmera.'],['21–27s · APLICAÇÃO','"Se você quer comprar aqui, faça isso antes de qualquer proposta..."'],['28–30s · CTA','"Me segue para dados do litoral toda semana."']];
+  else if(t==='erro') R=[['0–3s · GANCHO','"O erro #1 de quem compra imóvel em '+l+' (e como evitar)"'],['4–18s · O ERRO','Descreva o erro com exemplo real: não calcular ITBI, ignorar maresia, etc.'],['19–27s · A SOLUÇÃO','Mostre a ferramenta ou o passo correto em 1 frase.'],['28–30s · CTA','"Salva esse vídeo antes de visitar qualquer imóvel."']];
+  else R=[['0–3s · GANCHO','POV: segunda-feira de home office em '+l+' ☀️'],['4–20s · SEQUÊNCIA','Café na varanda → caminhada na orla → trabalho com vista → pôr do sol.'],['21–27s · CONTRASTE','"Enquanto isso, na capital..." (corte cômico de trânsito)'],['28–30s · CTA','"Marca alguém que precisa dessa vida."']];
+  document.getElementById('lista').innerHTML=R.map(function(c,i){
+    return '<div class="cena" style="display:block"><b>'+c[0]+'</b>'+c[1]+'</div>';
+  }).join('');
+  document.getElementById('cp').style.display='inline-block';
+}
+function copiar(){
+  var txt=[].slice.call(document.querySelectorAll('.cena')).map(function(c){return c.innerText}).join('\n\n');
+  navigator.clipboard.writeText(txt);
+  document.getElementById('cp').textContent='✅ Copiado!';
+}
+</script>
+</body>
+</html>
