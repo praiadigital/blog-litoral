@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendário Editorial 12 Meses — Praia Digital</title>
+<meta name="description" content="Plano de conteúdo mensal para blogs imobiliários do litoral: o que publicar em cada época do ano.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:720px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  .mes{border-radius:12px;padding:1rem 1.1rem;margin-bottom:.6rem;border:1px solid #e2e8f0;background:#f8fafc;cursor:pointer}
+  .mes:hover{border-color:#0077B6}
+  .mes h3{font-size:1rem;color:#0077B6;display:flex;justify-content:space-between}
+  .mes ul{display:none;margin:.7rem 0 0 1.1rem;font-size:.9rem;color:#334155;line-height:1.7}
+  .mes.open ul{display:block}
+  .badge{background:#e0f2fe;color:#0369a1;font-size:.72rem;font-weight:700;border-radius:999px;padding:.15rem .55rem}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/blog-litoral">← Blog do Litoral</a>
+</header>
+<main>
+  <div class="card">
+    <h1>📆 Calendário Editorial — 12 Meses</h1>
+    <p class="sub">O que publicar em cada mês para capturar a demanda certa. Clique nos meses para expandir.</p>
+    <div id="lista"></div>
+    <div class="dica">✍️ Transforme cada pauta em artigo com o <a href="https://praia.digital/blog-litoral/gerador-pautas/" style="color:#0077B6;font-weight:700">Gerador de Pautas</a> e títulos no <a href="https://praia.digital/blog-litoral/titulos-magneticos/" style="color:#0077B6;font-weight:700">Gerador de Títulos</a>.</div>
+  </div>
+</main>
+<script>
+var plano=[
+  ['Janeiro','Alta temporada',[['Melhores praias para o verão','Topo de funil'],['Checklist de temporada para anfitriões','Conversão'],['Preços de temporada: o que esperar','SEO local']]],
+  ['Fevereiro','Carnaval',[['Guia de carnaval no litoral','Tráfego'],['Locação de carnaval: última chamada','Urgência']]],
+  ['Março','Pós-verão',[['Vale a pena comprar após a temporada?','Comercial'],['Mercado imobiliário: balanço do verão','Autoridade']]],
+  ['Abril','Feriados',[['Feriados prolongados: guia de escapadas','Tráfego'],['Semana Santa no litoral','SEO local']]],
+  ['Maio','Baixa temporada',[['5 reformas que valorizam seu imóvel','Comercial'],['Aluguel anual vs temporada','Decisão']]],
+  ['Junho','Inverno',[['Home office na praia: a nova tendência','Topo'],['Festa junina no litoral','Local']]],
+  ['Julho','Férias de inverno',[['O que fazer no litoral em julho','Tráfego'],['Promoções de temporada de inverno','Conversão']]],
+  ['Agosto','Preparação',[['Como preparar seu anúncio para o verão','Anfitriões'],['Precificação para alta temporada','Anfitriões']]],
+  ['Setembro','Pré-temporada',[['Guia de investimento: onde comprar agora','Comercial'],['Primavera no litoral','Topo']]],
+  ['Outubro','Aquecimento',[['Financiamento: juros e oportunidades','Decisão'],['FGTS na compra do imóvel','SEO']]],
+  ['Novembro','Black Friday',[['Black Friday imobiliária: existe?','Comercial'],['Réveillon: reserve antes','Urgência']]],
+  ['Dezembro','Réveillon',[['Réveillon no litoral: guia completo','Tráfego'],['Retrospectiva do mercado','Autoridade']]]
+];
+document.getElementById('lista').innerHTML=plano.map(function(m,i){
+  return '<div class="mes" onclick="this.classList.toggle(\'open\')"><h3>'+m[0]+' <span class="badge">'+m[1]+'</span></h3><ul>'+m[2].map(function(p){return '<li><b>'+p[0]+'</b> <small>('+p[1]+')</small></li>'}).join('')+'</ul></div>';
+}).join('');
+</script>
+</body>
+</html>
