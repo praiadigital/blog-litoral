@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Pautas SEO — Blog do Litoral | Praia Digital</title>
+<meta name="description" content="Gere ideias de artigos otimizados para SEO local no mercado imobiliário do litoral paulista.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:720px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.25rem;font-size:.95rem}
+  label{font-weight:600;font-size:.85rem;display:block;margin:.9rem 0 .3rem}
+  select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  button.calc{width:100%;margin-top:1.2rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .pauta{background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #0077B6;border-radius:10px;padding:.9rem 1rem;margin-top:.8rem}
+  .pauta b{color:#0077B6}
+  .pauta small{color:#64748b;display:block;margin-top:.2rem}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/blog-litoral">← Blog do Litoral</a>
+</header>
+<main>
+  <div class="card">
+    <h1>✍️ Gerador de Pautas SEO</h1>
+    <p class="sub">Escolha cidade e tema — receba 5 pautas com intenção de busca real do litoral.</p>
+    <label>Cidade</label>
+    <select id="cidade"><option>Santos</option><option>Guarujá</option><option>Praia Grande</option><option>São Vicente</option><option>Bertioga</option><option>Mongaguá</option><option>Itanhaém</option><option>Peruíbe</option><option>Ubatuba</option></select>
+    <label>Tema</label>
+    <select id="tema"><option value="investir">Investimento imobiliário</option><option value="temporada">Aluguel de temporada</option><option value="comprar">Compra do primeiro imóvel</option><option value="ia">IA para corretores</option></select>
+    <button class="calc" onclick="gerar()">Gerar 5 pautas</button>
+    <div id="out"></div>
+    <div class="dica">💡 Publique no <a href="https://praia.digital/blog-litoral" style="color:#0077B6;font-weight:700">Blog do Litoral</a> e use o <a href="https://praia.digital/gerador-descricoes" style="color:#0077B6;font-weight:700">Gerador de Descrições</a> para o anúncio final.</div>
+  </div>
+</main>
+<script>
+var modelos={
+  investir:[
+    'Quanto rende um apartamento de temporada em {c} em 2026?',
+    'Preço por m² em {c}: bairros que mais valorizaram',
+    'Airbnb ou aluguel anual em {c}: comparativo com números reais',
+    'ROI de pousadas em {c}: o que os dados mostram',
+    '5 erros ao investir em imóvel na praia em {c}'
+  ],
+  temporada:[
+    'Calendário de alta temporada em {c}: quando subir sua diária',
+    'Como preparar seu imóvel em {c} para o verão (checklist)',
+    'Fotos que vendem: guia para anfitriões de {c}',
+    'Check-in autônomo em {c}: fechaduras e cofres comparados',
+    'Taxa de ocupação média em {c} por mês'
+  ],
+  comprar:[
+    'Guia completo para comprar o primeiro imóvel em {c}',
+    'FGTS na compra de imóvel em {c}: regras e elegibilidade',
+    'Custos ocultos da compra em {c}: ITBI, cartório e mais',
+    'Financiamento vs consórcio em {c}: qual vale mais a pena?',
+    'Bairros com melhor custo-benefício em {c}'
+  ],
+  ia:[
+    'Como corretores de {c} estão usando IA para vender mais',
+    'Agentes de IA para imobiliárias de {c}: guia prático',
+    'Automação de follow-up no WhatsApp para corretores de {c}',
+    'Descrições de anúncios com IA: antes e depois em {c}',
+    'CRM + IA: o combo que dobra conversões em {c}'
+  ]
+};
+function gerar(){
+  var c=document.getElementById('cidade').value, t=document.getElementById('tema').value;
+  document.getElementById('out').innerHTML=modelos[t].map(function(m,i){
+    var titulo=m.replace('{c}',c);
+    var kw=titulo.toLowerCase().replace(/[^a-z0-9à-ú ]/g,'');
+    return '<div class="pauta"><b>'+(i+1)+'. '+titulo+'</b><small>Palavra-chave: "'+kw.split(' ').slice(0,6).join(' ')+'" · Intenção: informacional/comercial</small></div>';
+  }).join('');
+}
+</script>
+</body>
+</html>
